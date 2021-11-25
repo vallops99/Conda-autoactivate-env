@@ -1,5 +1,5 @@
 # Conda-autoactivate-env
-Add autoactivate functionality on Conda by cding into a directory.
+Add autoactivate functionality on Conda by cding into a directory. (Only Unix-based OS)
 
 
 ## Instructions
@@ -32,5 +32,7 @@ elif [ -n $CONDACONFIGDIR ]; then
     fi
 fi }
 </pre>
+
+Every suggestion/update will be accepted!
 
 Cheers!
