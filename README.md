@@ -19,7 +19,7 @@ When you'll cd out of the directory the env will automatically deactivate.
 
 As the script is really short I'll add it there also, so you can copy and paste.
 
-<pre>
+```bash
 export CONDACONFIGDIR=""
 cd() { builtin cd "$@" && 
 if [ -f $PWD/.conda_config ]; then
@@ -31,7 +31,7 @@ elif [ "$CONDACONFIGDIR" ]; then
 	conda deactivate
     fi
 fi }
-</pre>
+```
 
 Every suggestion/update will be accepted!
 
