@@ -5,7 +5,7 @@ if [ -f $PWD/.conda_config ]; then
     conda activate $(cat .conda_config)
 elif [ "$CONDACONFIGDIR" ]; then
     if [[ $PWD != *"$CONDACONFIGDIR"* ]]; then
-    export CONDACONFIGDIR=""
-    conda deactivate
+        export CONDACONFIGDIR=""
+        conda deactivate
     fi
 fi }
