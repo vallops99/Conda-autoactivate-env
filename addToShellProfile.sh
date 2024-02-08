@@ -1,4 +1,4 @@
-if [[ -v "$CONDA_SHLVL" ]]; then
+if [[ -n "$CONDA_SHLVL" ]]; then
     export CONDACONFIGDIR=""
     cd() { builtin cd "$@" && 
     if [ -f $PWD/.conda_config ]; then
