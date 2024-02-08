@@ -15,22 +15,26 @@ The .conda_config file has to contain the name of the env you want to activate, 
 
 When you'll cd out of the directory the env will automatically deactivate.
 
+This will only have an effect if conda is active (user has previously run `conda init`). Thus it may be added to the system-wide functions in /etc/bashrc || /etc/zshrc and it will add functionality for all users, but only users who've initialized conda.
+
 ## Script
 
 As the script is really short I'll add it there also, so you can copy and paste.
 
 ```bash
-export CONDACONFIGDIR=""
-cd() { builtin cd "$@" && 
-if [ -f $PWD/.conda_config ]; then
-    export CONDACONFIGDIR=$PWD
-    conda activate $(cat .conda_config)
-elif [ "$CONDACONFIGDIR" ]; then
-    if [[ $PWD != *"$CONDACONFIGDIR"* ]]; then
-        export CONDACONFIGDIR=""
-        conda deactivate
-    fi
-fi }
+if [[ -n "$CONDA_SHLVL" ]]; then
+    export CONDACONFIGDIR=""
+    cd() { builtin cd "$@" && 
+    if [ -f $PWD/.conda_config ]; then
+        export CONDACONFIGDIR=$PWD
+        conda activate $(cat .conda_config)
+    elif [ "$CONDACONFIGDIR" ]; then
+        if [[ $PWD != *"$CONDACONFIGDIR"* ]]; then
+            export CONDACONFIGDIR=""
+            conda deactivate
+        fi
+    fi }
+fi
 ```
 
 Every suggestion/update will be accepted!
