@@ -26,12 +26,12 @@ function _z_do_conda_activate() {
     if [ "$CONDACONFIGDIR" ]; then
         if [[ $PWD != *"$CONDACONFIGDIR"* ]]; then
             export CONDACONFIGDIR=""
-            micromamba deactivate
+            conda deactivate
         fi
     fi
     if [ -f "$PWD/.conda_config" ]; then
         export CONDACONFIGDIR=$PWD
-        micromamba activate "$(cat .conda_config)"
+        conda activate "$(cat .conda_config)"
     fi
 }
 if [[ -n "$CONDA_SHLVL" ]]; then
