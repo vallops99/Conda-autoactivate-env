@@ -23,14 +23,15 @@ As the script is really short I'll add it there also, so you can copy and paste.
 
 ```bash
 function _z_do_conda_activate() {
-    if [ -f "$PWD/.conda_config" ]; then
-        export CONDACONFIGDIR=$PWD
-        conda activate "$(cat .conda_config)"
-    elif [ "$CONDACONFIGDIR" ]; then
+    if [ "$CONDACONFIGDIR" ]; then
         if [[ $PWD != *"$CONDACONFIGDIR"* ]]; then
             export CONDACONFIGDIR=""
             conda deactivate
         fi
+    fi
+    if [ -f "$PWD/.conda_config" ]; then
+        export CONDACONFIGDIR=$PWD
+        conda activate "$(cat .conda_config)"
     fi
 }
 if [[ -n "$CONDA_SHLVL" ]]; then
